@@ -3,7 +3,7 @@
 ## Basics
 
 1. `mvn clean install liberty:dev`
-1. <http://localhost:9080/> or <https://localhost:9443/>
+1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
 1. To stop, `Ctrl^C`
 
 ## Logs
