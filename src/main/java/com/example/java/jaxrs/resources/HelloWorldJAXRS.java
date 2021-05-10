@@ -1,7 +1,6 @@
 package com.example.java.jaxrs.resources;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.time.Instant;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,9 +13,7 @@ public class HelloWorldJAXRS {
 	@Path("helloworldjaxrs")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> helloWorldJAXRS() {
-		Map<String, Object> result = new HashMap<>();
-		result.put("result", "Hello World");
-		return result;
+	public String helloWorldJAXRS() {
+		return "Hello World @ " + Instant.now();
 	}
 }

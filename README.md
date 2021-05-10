@@ -23,7 +23,7 @@ grep keystore target/liberty/wlp/usr/servers/helloworld_microprofileServer/serve
 * Health Check: <http://localhost:9080/health/>
 * Metrics: <http://localhost:9080/metrics/>
 * OpenAPI JSON: <http://localhost:9080/openapi/>
-* OpenAPI UI: <http://localhost:9080/openapi/ui/>
+* Swagger UI: <http://localhost:9080/openapi/ui/>
 
 ## Appendix
 
