@@ -3,14 +3,19 @@
 
 	<!-- Enable features -->
 	<featureManager>
-		<feature>servlet-4.0</feature>
+		<feature>microProfile-4.0</feature>
 		<feature>requestTiming-1.0</feature>
 	</featureManager>
 
 	<!-- To access this server from a remote client add a host attribute to 
 		the following element, e.g. host="*" -->
 	<httpEndpoint id="defaultHttpEndpoint" httpPort="9080"
-		httpsPort="9443" />
+		httpsPort="9443">
+		<accessLogging
+			filepath="${server.output.dir}/logs/http_access.log"
+			maxFileSize="100" maxFiles="2"
+			logFormat="%h %u %t &quot;%r&quot; %s %b %D %{R}W" />
+	</httpEndpoint>
 
 	<!-- Automatically expand WAR files and EAR files -->
 	<applicationManager autoExpand="true" />
@@ -21,4 +26,10 @@
 
 	<requestTiming slowRequestThreshold="1s"
 		hungRequestThreshold="5s" sampleRate="1" />
+
+	<logging traceSpecification="*=info" maxFileSize="100"
+		maxFiles="2" />
+
+	<webApplication location="helloworld_microprofile.war" contextRoot="/">
+	</webApplication>
 </server>
