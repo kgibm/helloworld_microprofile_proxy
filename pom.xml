@@ -109,6 +109,7 @@
 					</assemblyArtifact>
 					<serverName>${project.artifactId}Server</serverName>
 					<include>${packaging.type}</include>
+					<mergeServerEnv>true</mergeServerEnv>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -25,7 +25,9 @@ public class HelloWorldEndpointIT {
 		WebTarget target = getTarget("/api/helloworldjaxrs");
 		try (Response response = target.request().get()) {
 			assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
-			assertTrue(response.readEntity(String.class).contains("Hello World"));
+			String body = response.readEntity(String.class);
+			System.out.println("/api/helloworldjaxrs response: " + body);
+			assertTrue(body.contains("Hello World"));
 		}
 	}
 
