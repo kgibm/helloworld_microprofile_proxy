@@ -27,7 +27,7 @@
 	<requestTiming slowRequestThreshold="1s"
 		hungRequestThreshold="5s" sampleRate="1" />
 
-	<logging traceSpecification="*=info" maxFileSize="100"
+	<logging traceSpecification="*=info:com.example.java.jaxrs.resources.HelloWorldJAXRS=all" maxFileSize="100"
 		maxFiles="2" />
 
 	<webApplication location="helloworld_microprofile.war" contextRoot="/">
