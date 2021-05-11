@@ -1,9 +1,10 @@
 # helloworld_microprofile
 
-## Development
+## Local Development
 
 1. `mvn clean liberty:dev`
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
+    1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env`
 1. To run tests, press `Enter`
 1. Logs:
     1. `target/liberty/wlp/usr/servers/helloworld_microprofileServer/logs/messages.log`
@@ -18,21 +19,14 @@
 
 1. `mvn package`
 1. `docker run --rm -p 9080:9080 -p 9443:9443 -it helloworld_microprofile`
-1. Access <http://localhost:9080/> or <https://localhost:9443/>
+1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
+    1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password /opt/ol/wlp/usr/servers/defaultServer/server.env`
 1. Logs:
     1. `/logs/messages.log`
     1. `/logs/trace.log`
     1. `/logs/http_access.log`
     1. `/opt/ol/wlp/output/defaultServer/logs/verbosegc*log`
     1. Javacores/etc. in `/opt/ol/wlp/output/defaultServer/logs/diagnostics/`
-
-## Security
-
-Some endpoints such as `/metrics/` are secured. The username is `admin` and password may be found with:
-
-```
-grep keystore target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env
-```
 
 ## MicroProfile Links
 
