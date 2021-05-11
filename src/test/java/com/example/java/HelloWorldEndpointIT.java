@@ -22,11 +22,11 @@ public class HelloWorldEndpointIT {
 
 	@Test
 	public void test1() {
-		WebTarget target = getTarget("/api/helloworldjaxrs");
+		WebTarget target = getTarget("/api/helloworld");
 		try (Response response = target.request().get()) {
 			assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 			String body = response.readEntity(String.class);
-			System.out.println("/api/helloworldjaxrs response: " + body);
+			System.out.println("/api/helloworld response: " + body);
 			assertTrue(body.contains("Hello World"));
 		}
 	}

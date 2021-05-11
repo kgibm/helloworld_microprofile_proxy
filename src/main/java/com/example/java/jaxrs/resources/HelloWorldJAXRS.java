@@ -20,7 +20,7 @@ public class HelloWorldJAXRS {
 	private static final Logger LOG = Logger.getLogger(CLASS_NAME);
 	private static final String METHOD_HELLOWORLDJAXRS = "helloWorldJAXRS";
 
-	@Path("helloworldjaxrs")
+	@Path("helloworld")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String, Object> helloWorldJAXRS(@DefaultValue("0") @QueryParam("sleepTimeMs") long sleepTimeMs)
