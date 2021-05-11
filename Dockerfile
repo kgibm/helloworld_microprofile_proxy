@@ -35,7 +35,9 @@ COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer
 
 COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/jvm.options /config/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/defaults/quick-start-security.xml /config/configDropins/defaults/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/defaults/quick_start_security.xml /config/configDropins/defaults/
+
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/defaults/default_microprofile_config.xml /config/configDropins/defaults/
 
 COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/overrides/liberty-plugin-variable-config.xml /config/configDropins/overrides/
 
