@@ -23,7 +23,7 @@
 		<liberty.var.HTTPS_PORT>9443</liberty.var.HTTPS_PORT>
 		<image.builder>docker</image.builder>
 		<image.user>kgibm</image.user>
-		<image.name>helloworld_microprofile</image.name>
+		<image.name>${project.artifactId}</image.name>
 	</properties>
 
 	<profiles>
