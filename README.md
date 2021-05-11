@@ -4,7 +4,7 @@
 
 1. `mvn clean liberty:dev`
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
-    1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env`
+    1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env`
 1. To run tests, press `Enter`
 1. Logs:
     1. `target/liberty/wlp/usr/servers/helloworld_microprofileServer/logs/messages.log`
