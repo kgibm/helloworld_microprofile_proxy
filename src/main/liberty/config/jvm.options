@@ -1,0 +1,23 @@
+####################
+# Standard options #
+####################
+
+# Default heap size in containers: https://www.eclipse.org/openj9/docs/xxusecontainersupport/
+# -XX:MaxRAMPercentage=
+
+##################
+# J9 JVM options #
+##################
+
+# verbose GC is generally recommended and has an overhead of ~<0.2%
+-Xverbosegclog:logs/verbosegc.%seq.log,20,50000
+
+# Isolate javacores, heapdumps, coredumps, Snap dumps, and JIT dumps to a separate directory
+# which may optionally be mounted to a persistent filesystem. 
+# https://www.eclipse.org/openj9/docs/xdump/#syntax
+-Xdump:directory=logs/diagnostics/
+
+# If the above directory is full, don't fall back to the tmp directory because
+# we don't want diagnostics affecting the main filesystem if that's where tmp is mounted.
+# https://www.eclipse.org/openj9/docs/xdump/#file-location
+-Xdump:nofailover

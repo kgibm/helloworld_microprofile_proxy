@@ -19,8 +19,9 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<packaging.type>minify,runnable</packaging.type>
-		<liberty.var.http.port>9080</liberty.var.http.port>
-		<liberty.var.https.port>9443</liberty.var.https.port>
+		<liberty.var.HTTP_PORT>9080</liberty.var.HTTP_PORT>
+		<liberty.var.HTTPS_PORT>9443</liberty.var.HTTPS_PORT>
+		<image.builder>docker</image.builder>
 	</properties>
 
 	<profiles>
@@ -124,8 +125,8 @@
 				<version>2.22.2</version>
 				<configuration>
 					<systemPropertyVariables>
-						<http.port>${liberty.var.http.port}</http.port>
-						<https.port>${liberty.var.https.port}</https.port>
+						<HTTP_PORT>${liberty.var.HTTP_PORT}</HTTP_PORT>
+						<HTTPS_PORT>${liberty.var.HTTPS_PORT}</HTTPS_PORT>
 					</systemPropertyVariables>
 				</configuration>
 				<executions>
@@ -144,13 +145,12 @@
 					<execution>
 						<phase>package</phase>
 						<configuration>
-							<tasks>
+							<target>
 								<exec dir="${project.basedir}"
-									executable="docker"
-									failonerror="true">
+									executable="${image.builder}" failonerror="true">
 									<arg line="build -t helloworld_microprofile ." />
 								</exec>
-							</tasks>
+							</target>
 						</configuration>
 						<goals>
 							<goal>run</goal>

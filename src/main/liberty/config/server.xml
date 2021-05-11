@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server>
-
-	<!-- Enable features -->
 	<featureManager>
 		<feature>microProfile-4.0</feature>
 		<feature>requestTiming-1.0</feature>
 	</featureManager>
 
+	<variable name="HTTP_PORT" defaultValue="9080" />
+	<variable name="HTTPS_PORT" defaultValue="9443" />
+	<variable name="MAX_TRACE_SIZE_MB" defaultValue="100" />
+	<variable name="MAX_TRACE_SIZE_COUNT" defaultValue="2" />
+	<variable name="MAX_REQUEST_SECONDS" defaultValue="5" />
+	<variable name="HUNG_REQUEST_SECONDS" defaultValue="300" />
+	<variable name="REQUEST_TIMING_SAMPLE_RATE" defaultValue="1" />
+	<variable name="X_LOG_DIR" defaultValue="${server.output.dir}/logs" />
+
 	<!-- To access this server from a remote client add a host attribute to 
 		the following element, e.g. host="*" -->
-	<httpEndpoint id="defaultHttpEndpoint" httpPort="9080"
-		httpsPort="9443">
-		<accessLogging
-			filepath="${server.output.dir}/logs/http_access.log"
-			maxFileSize="100" maxFiles="2"
-			logFormat="%h %u %t &quot;%r&quot; %s %b %D %{R}W" />
-	</httpEndpoint>
+	<httpEndpoint id="defaultHttpEndpoint"
+		httpPort="${HTTP_PORT}" httpsPort="${HTTPS_PORT}">
 
-	<!-- Automatically expand WAR files and EAR files -->
-	<applicationManager autoExpand="true" />
+		<accessLogging
+			filepath="${X_LOG_DIR}/http_access.log"
+			maxFileSize="${MAX_TRACE_SIZE_MB}" maxFiles="${MAX_TRACE_SIZE_COUNT}"
+			logFormat="%h %u %t &quot;%r&quot; %s %b %D %{R}W" />
+
+	</httpEndpoint>
 
 	<!-- Default SSL configuration enables trust for default certificates from 
 		the Java runtime -->
 	<ssl id="defaultSSLConfig" trustDefaultCerts="true" />
 
-	<requestTiming slowRequestThreshold="1s"
-		hungRequestThreshold="5s" sampleRate="1" />
+	<requestTiming
+		slowRequestThreshold="${MAX_REQUEST_SECONDS}s"
+		hungRequestThreshold="${HUNG_REQUEST_SECONDS}s"
+		sampleRate="${REQUEST_TIMING_SAMPLE_RATE}" />
 
-	<logging traceSpecification="*=info:com.example.java.jaxrs.resources.HelloWorldJAXRS=all" maxFileSize="100"
-		maxFiles="2" />
+	<logging
+		traceSpecification="*=info:com.example.java.jaxrs.resources.HelloWorldJAXRS=all"
+		maxFileSize="${MAX_TRACE_SIZE_MB}" maxFiles="${MAX_TRACE_SIZE_COUNT}" />
 
-	<webApplication location="helloworld_microprofile.war" contextRoot="/">
+	<webApplication location="helloworld_microprofile.war"
+		contextRoot="/">
 	</webApplication>
 </server>

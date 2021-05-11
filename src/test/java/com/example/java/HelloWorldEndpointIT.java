@@ -32,7 +32,7 @@ public class HelloWorldEndpointIT {
 	}
 
 	private WebTarget getTarget(String path) {
-		return client.target("http://localhost:" + System.getProperty("http.port") + path);
+		return client.target("http://localhost:" + System.getProperty("HTTP_PORT") + path);
 	}
 
 	@AfterAll
