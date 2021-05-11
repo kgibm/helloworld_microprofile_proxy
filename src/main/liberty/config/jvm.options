@@ -18,6 +18,7 @@
 
 # Isolate javacores, heapdumps, coredumps, Snap dumps, and JIT dumps to a separate directory
 # which may optionally be mounted to a persistent filesystem. 
+# For the parent Dockerfile, that would be /opt/ol/wlp/output/defaultServer/logs/diagnostics/
 # https://www.eclipse.org/openj9/docs/xdump/#syntax
 -Xdump:directory=logs/diagnostics/
 
