@@ -1,7 +1,8 @@
 FROM openliberty/open-liberty:full-java8-openj9-ubi
 
-ARG VERSION=1.0
-ARG REVISION=SNAPSHOT
+# These should be specified by the build (e.g. in pom.xml)
+ARG VERSION=0.0.0
+ARG REVISION=unknown
 
 LABEL \
   org.opencontainers.image.authors="Example" \

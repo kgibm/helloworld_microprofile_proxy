@@ -5,7 +5,7 @@
 	<groupId>com.example.java</groupId>
 	<artifactId>helloworld_microprofile</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<parent>
 		<groupId>io.openliberty.tools</groupId>
@@ -22,6 +22,8 @@
 		<liberty.var.HTTP_PORT>9080</liberty.var.HTTP_PORT>
 		<liberty.var.HTTPS_PORT>9443</liberty.var.HTTPS_PORT>
 		<image.builder>docker</image.builder>
+		<image.user>kgibm</image.user>
+		<image.name>helloworld_microprofile</image.name>
 	</properties>
 
 	<profiles>
@@ -146,10 +148,28 @@
 						<phase>package</phase>
 						<configuration>
 							<target>
+
+								<!-- exec: https://ant.apache.org/manual/Tasks/exec.html -->
+
+								<!-- Get the git commit hash and put it into a variable for the next 
+									command -->
+								<exec dir="${project.basedir}" executable="git"
+									failonerror="true" outputproperty="commit.id">
+									<arg line="rev-parse HEAD" />
+								</exec>
+
+								<!-- Run docker/podman build -->
 								<exec dir="${project.basedir}"
 									executable="${image.builder}" failonerror="true">
-									<arg line="build -t helloworld_microprofile ." />
+									<arg
+										line="build -t ${image.user}/${image.name}:${project.version} --build-arg VERSION=${project.version} --build-arg REVISION=${commit.id} ." />
 								</exec>
+
+								<echo
+									message="Created ${image.user}/${image.name}:${project.version} with VERSION=${project.version} REVISION=${commit.id}" />
+
+								<echo
+									message="docker run --rm -p ${liberty.var.HTTP_PORT}:${liberty.var.HTTP_PORT} -p ${liberty.var.HTTPS_PORT}:${liberty.var.HTTPS_PORT} -it ${image.user}/${image.name}:${project.version}" />
 							</target>
 						</configuration>
 						<goals>
