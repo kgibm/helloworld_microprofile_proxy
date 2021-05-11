@@ -6,7 +6,10 @@ Available from [Docker Hub](https://hub.docker.com/r/kgibm/helloworld_microprofi
 
 ## Local Development
 
-1. `mvn clean liberty:dev`
+1. Compile and run Liberty:
+   ```
+   mvn clean liberty:dev
+   ```
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
     1. Hello World JAX-RS endpoint: <http://localhost:9080/api/helloworld> or <https://localhost:9443/api/helloworld>
     1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env`
