@@ -22,7 +22,7 @@ Available from [Docker Hub](https://hub.docker.com/r/kgibm/helloworld_microprofi
 
 ## Packaging and running a container
 
-1. Build the container image (as part of a custom Ant task):
+1. Build the container image (as part of a custom Ant task in `pom.xml`):
    ```
    mvn clean package
    ```
