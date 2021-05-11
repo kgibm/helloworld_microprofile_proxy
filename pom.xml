@@ -14,14 +14,24 @@
 		<version>3.2.3</version>
 	</parent>
 
+	<!-- Override these with `mvn -D${PROPERTY}=${VALUE}` -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<packaging.type>minify,runnable</packaging.type>
+
+		<liberty.var.APP_NAME>${project.artifactId}.war</liberty.var.APP_NAME>
 		<liberty.var.HTTP_PORT>9080</liberty.var.HTTP_PORT>
 		<liberty.var.HTTPS_PORT>9443</liberty.var.HTTPS_PORT>
+		<liberty.var.TRACE_SPECIFICATION>*=info:com.example.java.jaxrs.resources.HelloWorldJAXRS=all</liberty.var.TRACE_SPECIFICATION>
+		<liberty.var.MAX_TRACE_SIZE_MB>100</liberty.var.MAX_TRACE_SIZE_MB>
+		<liberty.var.MAX_TRACE_SIZE_COUNT>2</liberty.var.MAX_TRACE_SIZE_COUNT>
+		<liberty.var.MAX_REQUEST_SECONDS>5</liberty.var.MAX_REQUEST_SECONDS>
+		<liberty.var.HUNG_REQUEST_SECONDS>300</liberty.var.HUNG_REQUEST_SECONDS>
+		<liberty.var.REQUEST_TIMING_SAMPLE_RATE>1</liberty.var.REQUEST_TIMING_SAMPLE_RATE>
+
 		<image.builder>docker</image.builder>
 		<image.user>kgibm</image.user>
 		<image.authors>kevin.grigorenko@us.ibm.com</image.authors>
@@ -193,6 +203,10 @@
 										<arg value="URL=${image.url}" />
 										<arg value="--build-arg" />
 										<arg value="SOURCE=${image.source}" />
+										<arg value="--build-arg" />
+										<arg value="HTTP_PORT=${liberty.var.HTTP_PORT}" />
+										<arg value="--build-arg" />
+										<arg value="HTTPS_PORT=${liberty.var.HTTPS_PORT}" />
 										<arg value="." />
 									</exec>
 								</echoxml>
@@ -222,6 +236,10 @@
 									<arg value="URL=${image.url}" />
 									<arg value="--build-arg" />
 									<arg value="SOURCE=${image.source}" />
+									<arg value="--build-arg" />
+									<arg value="HTTP_PORT=${liberty.var.HTTP_PORT}" />
+									<arg value="--build-arg" />
+									<arg value="HTTPS_PORT=${liberty.var.HTTPS_PORT}" />
 									<arg value="." />
 								</exec>
 

@@ -10,6 +10,8 @@ ARG SUMMARY=Example
 ARG DESCRIPTION=Example
 ARG URL=https://example.com/
 ARG SOURCE=https://example.com/
+ARG HTTP_PORT=9080
+ARG HTTPS_PORT=9443
 
 LABEL \
   org.opencontainers.image.authors="${AUTHORS}" \
@@ -37,6 +39,6 @@ COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer
 
 COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/overrides/liberty-plugin-variable-config.xml /config/configDropins/overrides/
 
-EXPOSE 9080 9443
+EXPOSE ${HTTP_PORT} ${HTTPS_PORT}
 
 RUN configure.sh
