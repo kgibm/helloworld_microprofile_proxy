@@ -19,7 +19,7 @@ A sample Java web application (`.war`) that uses [Eclipse MicroProfile](https://
 
 ## Packaging and running a container
 
-1. `mvn package`
+1. `mvn clean package`
 1. The above command prints the `docker run` command to use in the last `[echo]` line. For example:
    ```
    docker run --rm -p 9080:9080 -p 9443:9443 -it kgibm/helloworld_microprofile
