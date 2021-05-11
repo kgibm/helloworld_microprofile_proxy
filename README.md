@@ -20,7 +20,7 @@
 1. `mvn package`
 1. The above command prints the `docker run` command to use in the last `[echo]` line. For example:
    ```
-   docker run --rm -p 9080:9080 -p 9443:9443 -it kgibm/helloworld_microprofile:0.1.0
+   docker run --rm -p 9080:9080 -p 9443:9443 -it kgibm/helloworld_microprofile
    ```
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
     1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password /opt/ol/wlp/usr/servers/defaultServer/server.env`

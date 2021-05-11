@@ -148,7 +148,6 @@
 						<phase>package</phase>
 						<configuration>
 							<target>
-
 								<!-- exec: https://ant.apache.org/manual/Tasks/exec.html -->
 
 								<!-- Get the git commit hash and put it into a variable for the next 
@@ -162,14 +161,17 @@
 								<exec dir="${project.basedir}"
 									executable="${image.builder}" failonerror="true">
 									<arg
-										line="build -t ${image.user}/${image.name}:${project.version} --build-arg VERSION=${project.version} --build-arg REVISION=${commit.id} ." />
+										line="build -t ${image.user}/${image.name}:${project.version} -t ${image.user}/${image.name}:latest --build-arg VERSION=${project.version} --build-arg REVISION=${commit.id} ." />
 								</exec>
 
 								<echo
 									message="Created ${image.user}/${image.name}:${project.version} with VERSION=${project.version} REVISION=${commit.id}" />
-
+								<echo message="To push this image:" />
 								<echo
-									message="docker run --rm -p ${liberty.var.HTTP_PORT}:${liberty.var.HTTP_PORT} -p ${liberty.var.HTTPS_PORT}:${liberty.var.HTTPS_PORT} -it ${image.user}/${image.name}:${project.version}" />
+									message="  ${image.builder} push ${image.user}/${image.name}:${project.version} &amp;&amp; ${image.builder} push ${image.user}/${image.name}:latest" />
+								<echo message="To run this image:" />
+								<echo
+									message="  ${image.builder} run --rm -p ${liberty.var.HTTP_PORT}:${liberty.var.HTTP_PORT} -p ${liberty.var.HTTPS_PORT}:${liberty.var.HTTPS_PORT} -it ${image.user}/${image.name}" />
 							</target>
 						</configuration>
 						<goals>
