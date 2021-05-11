@@ -22,7 +22,10 @@ Available from [Docker Hub](https://hub.docker.com/r/kgibm/helloworld_microprofi
 
 ## Packaging and running a container
 
-1. `mvn clean package`
+1. Build the container image:
+   ```
+   mvn clean package
+   ```
 1. The above command prints the `docker run` command to use in the last `[echo]` line. For example:
    ```
    docker run --rm -p 9080:9080 -p 9443:9443 -it kgibm/helloworld_microprofile
