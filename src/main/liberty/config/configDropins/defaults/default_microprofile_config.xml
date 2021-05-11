@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="../../../schema/schema.xsd">
+	xsi:schemaLocation="../../../../schema/schema.xsd">
 
 	<!-- The microProfile-4.0 feature brings in mpOpenTracing-2.0 which expects 
 		an OpentracingTracerFactory such as Jaeger or Zipkin, but by default we don't 
