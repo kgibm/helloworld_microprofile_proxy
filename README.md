@@ -25,6 +25,14 @@ grep keystore target/liberty/wlp/usr/servers/helloworld_microprofileServer/serve
 * OpenAPI JSON: <http://localhost:9080/openapi/>
 * Swagger UI: <http://localhost:9080/openapi/ui/>
 
+## Docker/podman
+
+Running the resulting image:
+
+```
+docker run --rm -p 9080:9080 -it helloworld_microprofile
+```
+
 ## Appendix
 
 1. Liberty maven targets: <https://github.com/OpenLiberty/ci.maven>
