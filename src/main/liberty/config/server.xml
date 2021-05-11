@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="src/main/schema/schema.xsd">
+	xsi:schemaLocation="../../schema/schema.xsd">
 
 	<featureManager>
 		<feature>microProfile-4.0</feature>
