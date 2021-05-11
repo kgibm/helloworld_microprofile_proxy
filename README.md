@@ -6,6 +6,7 @@ A sample Java web application (`.war`) that uses [Eclipse MicroProfile](https://
 
 1. `mvn clean liberty:dev`
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
+    1. Hello World JAX-RS endpoint: <http://localhost:9080/api/helloworld> or <https://localhost:9443/api/helloworld>
     1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.env`
 1. To run tests, press `Enter`
 1. Logs:
@@ -25,6 +26,7 @@ A sample Java web application (`.war`) that uses [Eclipse MicroProfile](https://
    docker run --rm -p 9080:9080 -p 9443:9443 -it kgibm/helloworld_microprofile
    ```
 1. After Liberty starts (`CWWKF0011I`), access <http://localhost:9080/> or <https://localhost:9443/>
+    1. Hello World JAX-RS endpoint: <http://localhost:9080/api/helloworld> or <https://localhost:9443/api/helloworld>
     1. For secure endpoints such as `/metrics`, user `admin` and password `grep keystore_password /opt/ol/wlp/usr/servers/defaultServer/server.env`
 1. Logs:
     1. `/logs/messages.log`
