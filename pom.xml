@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example.java</groupId>
 	<artifactId>helloworld_microprofile</artifactId>
@@ -23,7 +24,13 @@
 		<liberty.var.HTTPS_PORT>9443</liberty.var.HTTPS_PORT>
 		<image.builder>docker</image.builder>
 		<image.user>kgibm</image.user>
+		<image.authors>kevin.grigorenko@us.ibm.com</image.authors>
 		<image.name>${project.artifactId}</image.name>
+		<image.summary>Hello World MicroProfile</image.summary>
+		<image.vendor>${image.user}</image.vendor>
+		<image.description>Example demonstrating a MicroProfile application</image.description>
+		<image.url>https://github.com/kgibm/helloworld_microprofile</image.url>
+		<image.source>https://github.com/kgibm/helloworld_microprofile</image.source>
 	</properties>
 
 	<profiles>
@@ -154,21 +161,76 @@
 									command -->
 								<exec dir="${project.basedir}" executable="git"
 									failonerror="true" outputproperty="commit.id">
-									<arg line="rev-parse HEAD" />
+									<arg value="rev-parse" />
+									<arg value="HEAD" />
 								</exec>
 
 								<!-- Run docker/podman build -->
+								<echoxml>
+									<exec dir="${project.basedir}"
+										executable="${image.builder}" failonerror="true">
+										<arg value="build" />
+										<arg value="-t" />
+										<arg
+											value="${image.user}/${image.name}:${project.version}" />
+										<arg value="-t" />
+										<arg value="${image.user}/${image.name}:latest" />
+										<arg value="--build-arg" />
+										<arg value="VERSION=${project.version}" />
+										<arg value="--build-arg" />
+										<arg value="REVISION=${commit.id}" />
+										<arg value="--build-arg" />
+										<arg value="AUTHORS=${image.authors}" />
+										<arg value="--build-arg" />
+										<arg value="VENDOR=${image.vendor}" />
+										<arg value="--build-arg" />
+										<arg value="SUMMARY=${image.summary}" />
+										<arg value="--build-arg" />
+										<arg value="NAME=${image.name}" />
+										<arg value="--build-arg" />
+										<arg value="DESCRIPTION=${image.description}" />
+										<arg value="--build-arg" />
+										<arg value="URL=${image.url}" />
+										<arg value="--build-arg" />
+										<arg value="SOURCE=${image.source}" />
+										<arg value="." />
+									</exec>
+								</echoxml>
+
 								<exec dir="${project.basedir}"
 									executable="${image.builder}" failonerror="true">
-									<arg
-										line="build -t ${image.user}/${image.name}:${project.version} -t ${image.user}/${image.name}:latest --build-arg VERSION=${project.version} --build-arg REVISION=${commit.id} ." />
+									<arg value="build" />
+									<arg value="-t" />
+									<arg value="${image.user}/${image.name}:${project.version}" />
+									<arg value="-t" />
+									<arg value="${image.user}/${image.name}:latest" />
+									<arg value="--build-arg" />
+									<arg value="VERSION=${project.version}" />
+									<arg value="--build-arg" />
+									<arg value="REVISION=${commit.id}" />
+									<arg value="--build-arg" />
+									<arg value="AUTHORS=${image.authors}" />
+									<arg value="--build-arg" />
+									<arg value="VENDOR=${image.vendor}" />
+									<arg value="--build-arg" />
+									<arg value="SUMMARY=${image.summary}" />
+									<arg value="--build-arg" />
+									<arg value="NAME=${image.name}" />
+									<arg value="--build-arg" />
+									<arg value="DESCRIPTION=${image.description}" />
+									<arg value="--build-arg" />
+									<arg value="URL=${image.url}" />
+									<arg value="--build-arg" />
+									<arg value="SOURCE=${image.source}" />
+									<arg value="." />
 								</exec>
 
 								<echo
-									message="Created ${image.user}/${image.name}:${project.version} with VERSION=${project.version} REVISION=${commit.id}" />
+									message="Created ${image.user}/${image.name}:${project.version}" />
 								<echo message="To push this image:" />
 								<echo
 									message="  ${image.builder} push ${image.user}/${image.name}:${project.version} &amp;&amp; ${image.builder} push ${image.user}/${image.name}:latest" />
+								<echo message="==================" />
 								<echo message="To run this image:" />
 								<echo
 									message="  ${image.builder} run --rm -p ${liberty.var.HTTP_PORT}:${liberty.var.HTTP_PORT} -p ${liberty.var.HTTPS_PORT}:${liberty.var.HTTPS_PORT} -it ${image.user}/${image.name}" />
