@@ -18,12 +18,12 @@ public class HelloWorldJAXRS {
 
 	private static final String CLASS_NAME = HelloWorldJAXRS.class.getCanonicalName();
 	private static final Logger LOG = Logger.getLogger(CLASS_NAME);
-	private static final String METHOD_HELLOWORLDJAXRS = "helloWorldJAXRS";
+	private static final String METHOD_HELLOWORLDJAXRS = "helloWorld";
 
 	@Path("helloworld")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Map<String, Object> helloWorldJAXRS(@DefaultValue("0") @QueryParam("sleepTimeMs") long sleepTimeMs)
+	public Map<String, Object> helloWorld(@DefaultValue("0") @QueryParam("sleepTimeMs") long sleepTimeMs)
 			throws Throwable {
 
 		if (LOG.isLoggable(Level.FINER))
