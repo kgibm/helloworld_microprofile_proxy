@@ -5,6 +5,10 @@
 # Default heap size in containers: https://www.eclipse.org/openj9/docs/xxusecontainersupport/
 # -XX:MaxRAMPercentage=
 
+# Resiliency:
+# https://publib.boulder.ibm.com/httpserv/cookbook/WebSphere_Application_Server-WAS_traditional-HTTP.html#WebSphere_Application_Server_traditional-Servlets-SSLUtilsflushCloseDown
+-DtimeoutValueInSSLClosingHandshake=1
+
 ##################
 # J9 JVM options #
 ##################

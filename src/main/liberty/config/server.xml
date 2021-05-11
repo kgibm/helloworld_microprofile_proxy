@@ -52,4 +52,14 @@
 
 	<webApplication location="${APP_NAME}" contextRoot="/">
 	</webApplication>
+
+	<!-- Performance tuning -->
+
+	<!-- https://publib.boulder.ibm.com/httpserv/cookbook/WebSphere_Application_Server-WAS_Liberty.html#WebSphere_Application_Server_Liberty-HTTP-Keep_Alive_Connections -->
+	<!-- persistTimeout: we're assuming LAN-only, pooled connections (e.g. OCP). -->
+	<httpOptions maxKeepAliveRequests="-1"
+		persistTimeout="575h" />
+
+	<!-- https://www.ibm.com/docs/en/was-liberty/nd?topic=tuning-liberty -->
+	<webContainer skipMetaInfResourcesProcessing="true" />
 </server>
