@@ -14,7 +14,8 @@ LABEL \
   name="helloworld_microprofile" \
   version="${VERSION}-${REVISION}" \
   summary="Hello World MicroProfile Application" \
-  description="Example demonstrating a MicroProfile application"
+  description="Example demonstrating a MicroProfile application" \
+  maintainer="kevin.grigorenko@us.ibm.com"
 
 COPY --chown=1001:0 target/helloworld_microprofile.war /config/apps/
 
