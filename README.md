@@ -2,6 +2,8 @@
 
 A sample Java web application (`.war`) that uses [Eclipse MicroProfile](https://openliberty.io/docs/latest/microprofile.html) to serve a ["Hello World" JAX-RS JSON API](https://github.com/kgibm/helloworld_microprofile/blob/main/src/main/java/com/example/java/jaxrs/resources/HelloWorldJAXRS.java) at `/api/helloworld`. It runs on the [OpenLiberty](https://openliberty.io/) Java application server and creates a Docker image based on [OpenLiberty, OpenJ9 Java, and the Red Hat Universal Base Image](https://hub.docker.com/r/openliberty/open-liberty/).
 
+Available from [Docker Hub](https://hub.docker.com/r/kgibm/helloworld_microprofile) with `kgibm/helloworld_microprofile`
+
 ## Local Development
 
 1. `mvn clean liberty:dev`
