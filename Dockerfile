@@ -10,8 +10,8 @@ ARG SUMMARY=Example
 ARG DESCRIPTION=Example
 ARG URL=https://example.com/
 ARG SOURCE=https://example.com/
-ARG HTTP_PORT=9080
-ARG HTTPS_PORT=9443
+ARG HTTP_PORT=9081
+ARG HTTPS_PORT=9444
 
 LABEL \
   org.opencontainers.image.authors="${AUTHORS}" \
@@ -27,19 +27,19 @@ LABEL \
   description="${DESCRIPTION}" \
   maintainer="${AUTHORS}"
 
-COPY --chown=1001:0 target/helloworld_microprofile.war /config/apps/
+COPY --chown=1001:0 target/helloworld_microprofile_proxy.war /config/apps/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/server.xml /config/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/server.xml /config/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/bootstrap.properties /config/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/bootstrap.properties /config/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/jvm.options /config/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/jvm.options /config/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/defaults/quick_start_security.xml /config/configDropins/defaults/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/configDropins/defaults/quick_start_security.xml /config/configDropins/defaults/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/defaults/default_microprofile_config.xml /config/configDropins/defaults/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/configDropins/defaults/default_microprofile_config.xml /config/configDropins/defaults/
 
-COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofileServer/configDropins/overrides/liberty-plugin-variable-config.xml /config/configDropins/overrides/
+COPY --chown=1001:0 target/liberty/wlp/usr/servers/helloworld_microprofile_proxyServer/configDropins/overrides/liberty-plugin-variable-config.xml /config/configDropins/overrides/
 
 EXPOSE ${HTTP_PORT} ${HTTPS_PORT}
 
